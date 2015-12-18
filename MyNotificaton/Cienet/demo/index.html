@@ -1,0 +1,204 @@
+
+<#include "header.html">
+
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script type="text/javascript" src="./js/MyEditTable.js"></script>
+<script type="text/javascript" src="./js/jquery.date_input.pack.js"></script>
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Notification</title> 
+
+<#noparse>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$("td.td_edit").click(function() {
+		var td = $(this);
+		MyTable.edit(td,"index.html","notification_edit");
+	});
+	
+	$("input.check_edit").change(function() {
+		var ckx = $(this);
+		MyTable.checked(ckx,"index.html","notification_edit_value");
+	});
+	
+	delete_item=function(item_id){
+		//alert(item_id);
+		//$("input").attr('disabled','disabled');
+		$.post("index.html",{act:"notification_delete",item_id:item_id,code:Math.random()},function(data,status){
+			//alert(data);
+			if (status == "success")
+			{
+				var div_table = $(data).find("div.ajax-table");
+				//alert(div_table.html());
+				if (div_table != null)
+				{
+					$("div.ajax-table").html(div_table.html());
+					$("td.td_edit").bind('click',function(){
+						var td1 = $(this);
+						MyTable.edit(td1,"index.html","notification_edit");
+					});
+					$("input.check_edit").bind('change',function(){
+						var chk1 = $(this);
+						MyTable.checked(chk1,"index.html","notification_edit_value");
+					});
+				}
+				//$("#main_div").attr('disabled','enabled');
+			}
+		})
+	}
+	
+	go_pages=function(page_act)
+	{
+		$.post("index.html",{act:"main",page_act:page_act,code:Math.random()},function(data,status){
+			if (status == "success")
+			{
+				var div_table = $(data).find("div.ajax-table");
+				if (div_table != null)
+				{
+					$("div.ajax-table").html(div_table.html());
+					$("td.td_edit").bind('click',function(){
+						var td1 = $(this);
+						MyTable.edit(td1,"index.html","notification_edit");
+					});
+					$("input.check_edit").bind('change',function(){
+						var chk1 = $(this);
+						MyTable.checked(chk1,"index.html","notification_edit_value");
+					});
+				}
+			}
+		})
+	}
+	
+	page_to_first=function()
+	{
+		go_pages("page_to_first");
+	}
+	
+	page_to_previous=function()
+	{
+		go_pages("page_to_previous");
+	}
+	
+	page_to_next=function()
+	{
+		go_pages("page_to_next");
+	}
+	
+	page_to_last=function()
+	{
+		go_pages("page_to_last");
+	}
+	
+	select_all_checkbox=function()
+	{
+		//$("#checkbox").set
+	}
+	
+	$("select.select_changed").change(function() {
+		var Uri = "index.html?act=notification_edit&"+$(this).val();
+		$.get(Uri, function(data,status) { 
+			if(data != "true") 
+			{
+				location.reload(); 
+				$(this).value(data); 
+				
+				return; 
+			}
+		});
+    })
+	
+	
+}); 
+</script> 
+</#noparse>
+
+<div id="main_div">
+<table>
+<tr>
+<td>
+<form action="add_item.html" method="post">
+<input type="submit" value="add item">
+</form>
+</td>
+<td>
+<form action="Index.html?act=add_notification_test_items" method="post">
+<input type="submit" value="add test items">
+</form>
+</td>
+<td>
+<#include "date_input.html">
+<form action="add_item.html?act=menu_show_notification_list" method="post">
+<input style="width:226px;background: #fefefe;border: 1px solid #bbb;font-size: 14px;color: #333;padding: 7px;border-radius: 3px;" type="text" class="date_picker" name="date_start" value='${date_start}'>
+<input style="width:226px;background: #fefefe;border: 1px solid #bbb;font-size: 14px;color: #333;padding: 7px;border-radius: 3px;" type="text" class="date_picker" name="date_end" value='${date_end}'>
+<input type="submit" value="Find" />
+</form>
+</td>
+
+</tr>
+</table>
+
+<table>
+<tbody>
+<tr>
+Show
+<select class='show_entries'>
+	<option value='10' >10</option>
+	<option value='100' >100</option>
+	<option value='${pages.offsets}'>${pages.offsets}</option>
+	</select>
+</tr>
+entries
+</tbody>
+</table>
+
+<div class="ajax-table" id="table-list">
+<table border=1>
+<tbody>
+<thead style="background-color:gray">
+<tr>
+<th><input type="checkbox" id="chkall" onclick="MyTable.check_all(this.form)"/>Id</th>
+<th>标题</th>
+<th>描述</th>
+<th>Action1 Text</th>
+<th>Action1 Uri</th>
+<th>Severity</th>
+<th>开始日期</th>
+<th>结束日期</th>
+<th>应用ID</th>
+<th>Operation</th>
+</tr>
+</thead>
+
+<#list list as items>
+	<tr>
+	<td><input type="checkbox" id="chkall" />${items.id}</td>
+	<td class='td_edit' id='${items.id}' name='title'>${items.title}</td>
+	<td class='td_edit' id='${items.id}' name='description'><span>${items.description}</span></td>
+	<td class='td_edit' id='${items.id}' name='action1_text'><span>${items.action1text}</span></td>
+	<td class='td_edit' id='${items.id}' name='action1_uri'>${items.action1uri}</td>
+	
+	<td><select class='select_changed'>
+	<option value='item_id=${items.id}&name=severity&value=Critical' >Critical</option>
+	<option value='item_id=${items.id}&name=optional&value=Optional' >Optional</option>
+	</select></td>
+	<td>${items.startdate}</td>
+	<td>${items.enddate}</td>
+	<td>${items.targetappname}</td>
+	<td><a href="javascript:void(0)" onclick="delete_item(${items.id})">delete</a></td>
+	</tr>
+
+</#list>
+
+</tbody>
+</table>
+<button type="button" onclick="page_to_first()">第一页</button>
+<button type="button" onclick="page_to_previous()">前一页</button>
+<button type="button"></button>
+<button type="button" onclick="page_to_next()">后一页</button>
+<button type="button" onclick="page_to_last()">最后页</button>
+</div>
+</div>
+
+<#include "footer.html">

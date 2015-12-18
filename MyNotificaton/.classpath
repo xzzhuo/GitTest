@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="libs/freemarker.jar"/>
+	<classpathentry kind="lib" path="libs/mysql-connector-java-5.1.37-bin.jar"/>
+	<classpathentry kind="lib" path="libs/netlib.jar"/>
+	<classpathentry kind="lib" path="libs/netty-all-4.0.25.Final-javadoc.jar"/>
+	<classpathentry kind="lib" path="libs/netty-all-4.0.25.Final-sources.jar"/>
+	<classpathentry kind="lib" path="libs/netty-all-4.0.25.Final.jar"/>
+	<classpathentry kind="lib" path="libs/commons-beanutils-1.9.2.jar"/>
+	<classpathentry kind="lib" path="libs/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="libs/poi-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="libs/poi-ooxml-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="libs/poi-ooxml-schemas-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="libs/poi-scratchpad-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="libs/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="libs/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="lib" path="libs/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="libs/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

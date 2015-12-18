@@ -1,0 +1,12 @@
+name : ${name}  
+age : ${age}
+person.name : ${person.name}
+
+<#if person.bookSize gt 0> 
+	person.size: ${person.bookSize}
+	
+	<#list person.books as p>
+		<tr><td>book name</td><td>${p!}</td></tr>
+	</#list>
+</#if>
+

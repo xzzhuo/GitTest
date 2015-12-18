@@ -1,0 +1,5 @@
+Demo:
+	http://localhost:8080/demo/
+	http://localhost:8080/demo/?act=login
+	http://localhost:8080/demo/?act=logout
+	

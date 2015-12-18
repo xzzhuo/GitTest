@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+    <TITLE>${title!"no title"} - ${name!"no name"}</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff">
+
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script type="text/javascript" src="./js/MyEditTable.js"></script>
+
+<#noparse>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$("#Loading").hide();
+	$("#div_barrier").hide();
+
+	$("input[type='submit']").click(function(){
+		MyTable.show_barrier($("div#div_barrier"),"./images/wait.gif");
+	})
+	
+	$("input[type='submit']").change(function(){
+		MyTable.show_barrier($("div#div_barrier"),"./images/wait.gif");
+	})
+}); 
+
+
+</script> 
+
+</#noparse>
+
+<div id="div_barrier"></div>
+<div id="Loading" style="position:absolute;z-index:3;top:200px;left:250px;width:250;height:80;border-width:1;border-style:ridge;background-color:gray;padding-top:10px"><center><table border="0"><tr><td valign="middle"><img src="./images/wait.gif" border="0" WIDTH="64" HEIGHT="64"></td><td>&nbsp;&nbsp;</td><td valign="middle"><span id=txtLoading0 style="font-size:14px;">Notification</span><br><span id=txtLoading1 style="font-size:14px;">Loading,please wait...</span></td></tr></table></center></div>
+

@@ -1,0 +1,66 @@
+
+<script type="text/javascript" src="./js/jquery.date_input.pack.js"></script>
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+
+<form action="Index.html?act=act_notification_item_insert" method="post">
+
+<div>
+
+<table border=1>
+
+<tr>
+<td>标题 </td>
+<td><input type="text" name="title"></td>
+</tr>
+
+<tr>
+<td>描述</td>
+<td><input type="text" name="description"></td>
+</tr>
+
+<tr>
+<td>Action1 Text</td>
+<td><input type="text" name="action1text"></td>
+</tr>
+
+<tr>
+<td>Action1 Uri</td>
+<td><input type="text" name="action1uri"></td>
+
+<tr>
+<td>Severity</td>
+<td>
+	<select class='select_changed' name='severity'>
+	<option value='Critical' >Critical</option>
+	<option value='Optional' >Optional</option>
+	</select>
+</tr>
+
+<tr>
+<td>Start Date</td>
+<td>
+<#include "date_input.html">
+<input style="width:226px;background: #fefefe;border: 1px solid #bbb;font-size: 14px;color: #333;padding: 7px;border-radius: 3px;" type="text" class="date_picker" name="startdate">
+</td>
+</tr>
+
+<tr>
+<td>End Date</td>
+<td>
+<#include "date_input.html">
+<input style="width:226px;background: #fefefe;border: 1px solid #bbb;font-size: 14px;color: #333;padding: 7px;border-radius: 3px;" type="text" class="date_picker" name="enddate">
+</td>
+</tr>
+
+<tr>
+<td>Target App Name</td>
+<td><input type="text" name="targetappname"></td>
+</tr>
+
+</form>
+
+</table>
+
+<input type="submit" value="add item">
+
+</div>
