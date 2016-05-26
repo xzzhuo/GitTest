@@ -20,6 +20,7 @@ import java.util.UUID;
 import com.google.gson.Gson;
 import com.rain.data.Person;
 import com.rain.data.TextDate;
+import com.rain.path.NetPath;
 import com.rain.transfer.BeanTransef;
 
 import java.util.zip.ZipEntry;
@@ -77,8 +78,66 @@ public class JavaTest {
 		
 		System.out.println("\n11. test zip file()");
 		TestZipFile();
+		
+		System.out.println("\n12. test path");
+		try {
+			TestPath();
+		} catch (IOException e) {
+			System.out.println("\ntest path failed: " + e.getMessage());
+		}
 	}
 	
+	private static void TestPath() throws IOException {
+		
+		System.out.println("NetPath.combine(\"Path1\", \"Path2\")");
+		System.out.println(NetPath.combine("Path1", "Path2"));
+		System.out.println();
+		
+		String a = "root/Path1\\a";
+		String b = "root/Path2\\b";
+		System.out.println(String.format("NetPath.combine(\"%s\", \"%s\")", a, b));
+		System.out.println(NetPath.combine(a, b));
+		System.out.println();
+		
+		a = "root/Path1\\a";
+		b = "root/Path2\\b";
+		System.out.println(String.format("NetPath.combine(\"%s\", \"%s\")", a, b));
+		String c = NetPath.combine(a, b);
+		System.out.println(c);
+		System.out.println(String.format("NetPath.canonical(\"%s\")", c));
+		c = NetPath.canonical(c);
+		System.out.println(c);
+		System.out.println(String.format("NetPath.relative(\"%s\", \"%s\")", a, c));
+		System.out.println("result:" + NetPath.relative(a, c));
+		System.out.println(String.format("NetPath.relative(\"%s\", \"%s\")", c, a));
+		String b1 = NetPath.relative(c, a);
+		System.out.println("result:" + b1);
+		System.out.println(String.format("NetPath.canonicalCombine(\"%s\", \"%s\")", a, c));
+		String a1 = NetPath.canonicalCombine(c, b1);
+		System.out.println("result:" + a1);
+		System.out.println();
+		
+		System.out.println(String.format("NetPath.abslote(\"%s\")", a));
+		System.out.println(NetPath.abslote(a));
+		System.out.println();
+		
+		System.out.println(String.format("NetPath.canonical(\"%s\")", a));
+		System.out.println(NetPath.canonical(a));
+		System.out.println();
+		
+		System.out.println(String.format("NetPath.abslote(\"%s\")", b));
+		System.out.println(NetPath.abslote(b));
+		System.out.println();
+		
+		System.out.println(String.format("NetPath.canonical(\"%s\")", b));
+		System.out.println(NetPath.canonical(b));
+		System.out.println();
+		
+		System.out.println(String.format("NetPath.canonicalCombine(\"%s\", \"%s\")", a, b));
+		System.out.println(NetPath.canonicalCombine(a, b));
+		System.out.println();
+	}
+
 	private static void TestZipFile() {
 		
 		String file = "temp/zipfile.zip";
