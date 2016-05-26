@@ -59,7 +59,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
         } else if (msg instanceof WebSocketFrame) {
             handleWebSocketFrame(ctx, (WebSocketFrame) msg);
         } else {
-        	System.out.println(msg.toString());
+        	System.out.println("Not support : " + msg.toString());
         }
     }
 
@@ -114,14 +114,22 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
 
         // Check for closing frame
         if (frame instanceof CloseWebSocketFrame) {
+        	System.out.println("Server : receive close webSocket");
             handshaker.close(ctx.channel(), (CloseWebSocketFrame) frame.retain());
             return;
         }
         if (frame instanceof PingWebSocketFrame) {
+        	System.out.println("Server : receive ping webSocket");
             ctx.channel().write(new PongWebSocketFrame(frame.content().retain()));
             return;
         }
+        if (frame instanceof PongWebSocketFrame) {
+        	System.out.println("Server : receive pong webSocket");
+            //ctx.channel().write(new PingWebSocketFrame(frame.content().retain()));
+            return;
+        }
         if (!(frame instanceof TextWebSocketFrame)) {
+        	System.out.println("Server : receive not text webSocket");
            throw new UnsupportedOperationException(String.format("%s frame types not supported", frame.getClass()
                     .getName()));
         }
@@ -156,6 +164,11 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+    	Channel ch = ctx.channel();
+    	System.out.println(String.format("Address : %s\r\n", ch.remoteAddress()));
+    	
+    	System.out.println("Exception caught: \r\n");
+    	System.out.println(cause.getClass().getName() + "\r\n");
         cause.printStackTrace();
         ctx.close();
     }

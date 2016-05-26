@@ -35,7 +35,6 @@ import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketVersion;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
-import io.netty.handler.ssl.util.SelfSignedCertificate;
  
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -56,7 +55,7 @@ import java.net.URI;
  */
 public final class WebSocketClient {
 
-    static final String URL = System.getProperty("url", "ws://127.0.0.1:8080/websocket");
+    static final String URL = System.getProperty("url", "ws://127.0.0.1:8081/websocket");
 
     public static void main(String[] args) throws Exception {
         URI uri = new URI(URL);
