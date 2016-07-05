@@ -14,6 +14,9 @@ public class TextDate {
 	private Long key5;
 	private Double key6;
 	private char key7;
+	private byte key8;
+	private float key9;
+	private boolean key10;
 
 	public String getKey1() {
 		return key1;
@@ -69,5 +72,29 @@ public class TextDate {
 
 	public void setKey7(char key7) {
 		this.key7 = key7;
+	}
+
+	public byte getKey8() {
+		return key8;
+	}
+
+	public void setKey8(byte key8) {
+		this.key8 = key8;
+	}
+
+	public float getKey9() {
+		return key9;
+	}
+
+	public void setKey9(float key9) {
+		this.key9 = key9;
+	}
+
+	public boolean isKey10() {
+		return key10;
+	}
+
+	public void setKey10(boolean key10) {
+		this.key10 = key10;
 	}
 }

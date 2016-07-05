@@ -230,6 +230,12 @@ public class JavaTest {
 		map3.put("key5", "10000");
 		map3.put("key6", "10.34");
 		map3.put("key7", "12");
+		map3.put("key8", "127");
+		map3.put("key9", "11.56");
+		map3.put("key10", "true");
+		
+		System.out.println("map3: " + map3.toString());
+		
 		TextDate data3 = BeanTransef.transMap2Bean(map3, TextDate.class, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 		System.out.println("key1 = " + data3.getKey1());
 		System.out.println("key2 = " + data3.getKey2());
@@ -238,6 +244,9 @@ public class JavaTest {
 		System.out.println("key5 = " + data3.getKey5());
 		System.out.println("key6 = " + data3.getKey6());
 		System.out.println("key7 = " + data3.getKey7());
+		System.out.println("key8 = " + data3.getKey8());
+		System.out.println("key9 = " + data3.getKey9());
+		System.out.println("key10 = " + data3.isKey10());
 		
 		// 6. get file name
 		System.out.println("\n <6> get file name\n");

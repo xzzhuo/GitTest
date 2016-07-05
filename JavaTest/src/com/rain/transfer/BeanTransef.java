@@ -61,6 +61,18 @@ public class BeanTransef {
 						{
 							setter.invoke(obj, Short.parseShort(str));
 						}
+						else if (property.getPropertyType().equals(byte.class) || property.getPropertyType().equals(Byte.class))
+						{
+							setter.invoke(obj, Byte.parseByte(str));
+						}
+						else if (property.getPropertyType().equals(float.class) || property.getPropertyType().equals(Float.class))
+						{
+							setter.invoke(obj, Float.parseFloat(str));
+						}
+						else if (property.getPropertyType().equals(boolean.class) || property.getPropertyType().equals(Boolean.class))
+						{
+							setter.invoke(obj, Boolean.parseBoolean(str));
+						}
 						else
 						{
 							throw new Exception(property.getPropertyType().toString());
