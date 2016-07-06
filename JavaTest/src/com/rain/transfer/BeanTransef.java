@@ -79,6 +79,10 @@ public class BeanTransef {
 						}
 					}
 				}
+				else
+				{
+					System.err.println(String.format("transMap2Bean Error: '%s' is not match", key));  
+				}
 			}
 		} catch (Exception e) {  
 			System.out.println("transMap2Bean Error " + e);  

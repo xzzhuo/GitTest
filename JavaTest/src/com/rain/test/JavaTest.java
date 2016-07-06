@@ -232,7 +232,7 @@ public class JavaTest {
 		map3.put("key7", "12");
 		map3.put("key8", "127");
 		map3.put("key9", "11.56");
-		map3.put("key10", "true");
+		//map3.put("key10", "true");
 		
 		System.out.println("map3: " + map3.toString());
 		
