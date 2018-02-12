@@ -1,3 +1,8 @@
+/*
+ * @author XiaoZhao
+ * 
+ */
+
 package com.rain.test;
 
 import java.io.BufferedInputStream;
@@ -42,6 +47,9 @@ class StringTest
 	public String value;
 }
 
+/*
+ * 
+ */
 public class JavaTest {
 	
 	public static void main(String[] args) {
