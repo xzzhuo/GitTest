@@ -68,6 +68,9 @@ public class MyRSA {
 
 		byte[] publicKey = readKeyData("output/public.dat");
 		byte[] signature = readKeyData("output/signature.dat");
+		System.out.println("Signature : " + transferHexString(signature));
+		//System.out.println("Signature2 : " + transferHexString(transferHexStringToByteArray(transferHexString(signature))));
+		
 		return verifySignature(algorithm, publicKey, text, signature);
 	}
 	
@@ -284,5 +287,26 @@ public class MyRSA {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static String transferHexString(byte[] data) {
+		StringBuilder builder = new StringBuilder();
+		for (byte b : data) {
+			builder.append(String.format("%X", b));
+		}
+		
+		return builder.toString();
+	}
+	
+	public static byte[] transferHexStringToByteArray(String value) {
+		
+		byte[] data = new byte[value.length()];
+
+		for (int i=0; i<value.length(); i++) {
+			char ch = value.charAt(i);
+			data[i] = Byte.parseByte(String.valueOf(ch), 16);
+		}
+		
+		return data;
 	}
 }
