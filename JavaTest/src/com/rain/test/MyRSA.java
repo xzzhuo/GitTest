@@ -47,6 +47,22 @@ public class MyRSA {
 		}
 		
 		// testRSA(text);
+		
+		byte data[] = new byte[2];
+		data[0] = (byte) 0x0AB;
+		data[1] = 0x07;
+		System.out.println("data[0] : " + data[0]);
+		System.out.println("data[1] : " + data[1]);
+		
+		String v1 = transferHexString(data);
+		System.out.println("V1 : " + v1);
+		
+		byte data1[] = transferHexStringToByteArray(v1);
+		System.out.println("data1[0] : " + data1[0]);
+		System.out.println("data1[1] : " + data1[1]);
+		
+		String v2 = transferHexString(data1);
+		System.out.println("V2 : " + v2);
 	}
 	
 	public static void testGenerateKeyPair(String algorithm, String text) {
@@ -69,7 +85,6 @@ public class MyRSA {
 		byte[] publicKey = readKeyData("output/public.dat");
 		byte[] signature = readKeyData("output/signature.dat");
 		System.out.println("Signature : " + transferHexString(signature));
-		//System.out.println("Signature2 : " + transferHexString(transferHexStringToByteArray(transferHexString(signature))));
 		
 		return verifySignature(algorithm, publicKey, text, signature);
 	}
@@ -288,11 +303,11 @@ public class MyRSA {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static String transferHexString(byte[] data) {
 		StringBuilder builder = new StringBuilder();
 		for (byte b : data) {
-			builder.append(String.format("%X", b));
+			builder.append(String.format("%02X", b));
 		}
 		
 		return builder.toString();
@@ -300,11 +315,12 @@ public class MyRSA {
 	
 	public static byte[] transferHexStringToByteArray(String value) {
 		
-		byte[] data = new byte[value.length()];
+		byte[] data = new byte[value.length()/2];
 
-		for (int i=0; i<value.length(); i++) {
-			char ch = value.charAt(i);
-			data[i] = Byte.parseByte(String.valueOf(ch), 16);
+		for (int i=0; i<value.length()/2; i++) {
+			char ch1 = value.charAt(2*i);
+			char ch2 = value.charAt(2*i+1);
+			data[i] = Integer.valueOf(""+ch1+ch2, 16).byteValue();
 		}
 		
 		return data;
