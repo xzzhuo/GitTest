@@ -93,6 +93,9 @@ public class JavaTest {
 		} catch (IOException e) {
 			System.out.println("\ntest path failed: " + e.getMessage());
 		}
+		
+		System.out.println("\n12. test my RSA");
+		MyRSA.doRSATest();
 	}
 	
 	private static void TestPath() throws IOException {
