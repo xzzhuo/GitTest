@@ -160,9 +160,10 @@ public class JavaTest {
 			ZipEntry ze;  
 			while ((ze = zin.getNextEntry()) != null) {  
 				if (ze.isDirectory()) {
+					System.err.println("dir - " + ze.getName());
 				} else {
 					System.err.println("file - " + ze.getName() + " : "  
-	                           + ze.getSize() + " bytes");  
+	                           + ze.getSize() + " bytes");
                    long size = ze.getSize();
                    if (size > 0) {  
                        BufferedReader br = new BufferedReader(  
@@ -176,6 +177,15 @@ public class JavaTest {
                    System.out.println();
 				}
 			}
+			String fileSpecial = "zipfile/path1/path1-1/file1-1.html";
+			ze = zf.getEntry(fileSpecial);
+			if (ze != null) {
+				System.out.println("special file - " + ze.getName() + " : "  
+                        + ze.getSize() + " bytes");
+			} else {
+				System.err.println("Can't get entery: " + fileSpecial);
+			}
+
 			zin.close();
 			zf.close();
 		} catch (IOException e) {
