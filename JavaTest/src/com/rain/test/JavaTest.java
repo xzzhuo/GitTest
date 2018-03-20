@@ -96,6 +96,9 @@ public class JavaTest {
 		
 		System.out.println("\n12. test my RSA");
 		MyRSA.doRSATest();
+		
+		System.out.println("\n13. print class name");
+		InheritFromBase.build().printClassName();
 	}
 	
 	private static void TestPath() throws IOException {
