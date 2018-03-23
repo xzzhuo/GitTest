@@ -107,6 +107,10 @@ public class JavaTest {
 		ReadJarFile1.build().getJarFile("classpath:resource/jarfile.txt");
 		ReadJarFile1.build().readFile("classpath:resource/jarfile.txt");
 		ReadJarFile1.build().readFile("resource/jarfile.txt");
+		
+		// 15. tst encryp AES
+		System.out.println("\n <7> tst encryp AES\n");
+		EncrypAES.testAES();
 	}
 	
 	private static void TestPath() throws IOException {
