@@ -25,6 +25,8 @@ import java.util.UUID;
 import com.google.gson.Gson;
 import com.rain.data.Person;
 import com.rain.data.TextDate;
+import com.rain.jarfile.ReadJarFile;
+import com.rain.jarfile.ReadJarFile1;
 import com.rain.path.NetPath;
 import com.rain.transfer.BeanTransef;
 
@@ -99,6 +101,12 @@ public class JavaTest {
 		
 		System.out.println("\n13. print class name");
 		InheritFromBase.build().printClassName();
+		
+		System.out.println("\n14. test read jar file");
+		ReadJarFile.build().readJarFile();
+		ReadJarFile1.build().getJarFile("classpath:resource/jarfile.txt");
+		ReadJarFile1.build().readFile("classpath:resource/jarfile.txt");
+		ReadJarFile1.build().readFile("resource/jarfile.txt");
 	}
 	
 	private static void TestPath() throws IOException {
