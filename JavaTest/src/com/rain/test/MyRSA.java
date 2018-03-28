@@ -32,7 +32,7 @@ public class MyRSA {
 
 		String algorithm = "MD5withRSA";
 
-		 // testGenerateKeyPair(algorithm, text);
+		// testGenerateKeyPair(algorithm, text);
 
 		if (testVerifyKeyPair(algorithm, text1)) {
 			System.out.println("Verify OK : " + path1);
