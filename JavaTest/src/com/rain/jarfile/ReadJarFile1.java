@@ -7,6 +7,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Enumeration;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 public class ReadJarFile1 {
 
@@ -102,5 +107,35 @@ public class ReadJarFile1 {
 	
 	public static ReadJarFile1 build() {
 		return new ReadJarFile1();
+	}
+	
+	public List<String> expandJarFiles(String filter) {
+        String jar = ReadJarFile.class.getProtectionDomain().getCodeSource().getLocation().getFile();
+        filter = filter.toLowerCase();
+        List<String> list = new LinkedList<String>();
+        JarFile jf = null;
+        try {
+            jf = new JarFile(jar);
+            Enumeration<JarEntry> es = jf.entries();
+            while (es.hasMoreElements()) {
+                String resname = es.nextElement().getName();
+                if (resname.toLowerCase().lastIndexOf(filter) != -1) list.add(resname);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (jf != null) {
+                try {
+                    jf.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        for (String s : list) {
+            URL url = ReadJarFile1.class.getResource("/".concat(s));
+            System.out.println(url.toString());
+        }
+		return list;
 	}
 }
